@@ -96,3 +96,32 @@ body {
   text-decoration-color: #f3eda6;
   text-underline-offset: 3px;
 }
+
+.login-inactive {
+  opacity: 0.3;
+  &::after {
+    display: none;
+  }
+}
+
+.container-black {
+  color: #fff;
+  margin: auto;
+  background: #09141a;
+  width: 375px;
+}
+
+.gold-text {
+  background: linear-gradient(
+    74.08deg,
+    #94783e -6.8%,
+    #f3eda6 16.76%,
+    #f8fae5 30.5%,
+    #ffe2be 49.6%,
+    #d5be88 78.56%,
+    #f8fae5 89.01%,
+    #d5be88 100.43%
+  );
+  background-clip: text;
+  color: transparent;
+}

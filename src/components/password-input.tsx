@@ -10,7 +10,7 @@ type TProps = {
   onChange?: (value: string) => void;
 };
 
-export default function InputWithIcon({
+export default function PasswordInput({
   src,
   name,
   placeholder,

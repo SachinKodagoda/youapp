@@ -1,15 +1,18 @@
 "use client";
 
-import BackImage from "@/assets/images/back.svg";
-import EyeClosed from "@/assets/images/eye-closed.svg";
-import EyeOpened from "@/assets/images/eye-opened.svg";
-import InputWithIcon from "@/components/input-with-icon";
+import BackImage from "@assets/images/back-icon.svg";
+import EyeClosed from "@assets/images/eye-closed.svg";
+import EyeOpened from "@assets/images/eye-opened.svg";
+import PasswordInput from "@components/password-input";
+import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const isValid = password.length > 0 && username.length > 0;
   return (
     <main className="container flex min-h-screen flex-col justify-between gap-4 p-4">
       <nav className="flex gap-2 text-sm font-bold">
@@ -26,8 +29,10 @@ export default function Home() {
               name="username"
               autoComplete="off"
               placeholder="Enter Username/Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             ></input>
-            <InputWithIcon
+            <PasswordInput
               src={showPassword ? EyeOpened : EyeClosed}
               name="password"
               placeholder="Enter Password"
@@ -37,7 +42,14 @@ export default function Home() {
               showPassword={showPassword}
             />
           </form>
-          <button className="login-button w-full rounded-lg">Login</button>
+          <button
+            className={clsx(
+              !isValid && "login-inactive",
+              "login-button w-full rounded-lg",
+            )}
+          >
+            Login
+          </button>
           <div className="mt-5 flex justify-center text-xs font-[500]">
             <div className="flex gap-1">
               No account?{" "}
