@@ -1,4 +1,5 @@
-import AboutFormElement from "@components/about-form-element";
+import AboutFormElement from "@/components/about-form/about-form-element";
+import AboutSelect from "./about-select";
 
 export default function AboutForm() {
   return (
@@ -10,6 +11,7 @@ export default function AboutForm() {
       <AboutFormElement label="Zodiac" placeholder="--" />
       <AboutFormElement label="Height" placeholder="Add height" />
       <AboutFormElement label="Weight" placeholder="Add weight" />
+      <AboutSelect label="Gender" placeholder="Select Gender" />
     </form>
   );
 }

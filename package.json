@@ -9,15 +9,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.7",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.542.0",
     "next": "13.5.11",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
     "autoprefixer": "^10",
     "eslint": "^8.57.1",
     "eslint-config-next": "13.5.11",

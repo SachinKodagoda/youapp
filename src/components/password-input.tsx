@@ -23,7 +23,7 @@ export default function PasswordInput({
     <div className="relative">
       <input
         type={showPassword ? "text" : "password"}
-        className="h-[51px] w-full rounded-lg bg-white/10 px-5 pr-10 text-sm outline-none placeholder:text-white/40"
+        className="select-wrapper h-[51px] w-full rounded-lg bg-white/10 px-5 pr-10 text-sm outline-none placeholder:text-white/40"
         name={name}
         autoComplete="new-password"
         placeholder={placeholder}

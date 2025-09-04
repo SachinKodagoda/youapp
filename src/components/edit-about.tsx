@@ -1,4 +1,4 @@
-import AboutForm from "@components/about-form";
+import AboutForm from "@/components/about-form/about-form";
 import AddImage from "@components/add-image";
 
 type TProps = { onEdit?: () => void };

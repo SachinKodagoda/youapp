@@ -25,7 +25,7 @@ export default function Home() {
           <form className="flex w-full flex-col gap-[15px]" autoComplete="off">
             <input
               type="text"
-              className="h-[51px] rounded-lg bg-white/10 px-5 text-sm outline-none placeholder:text-white/40"
+              className="select-wrapper h-[51px] rounded-lg bg-white/10 px-5 text-sm outline-none placeholder:text-white/40"
               name="username"
               autoComplete="off"
               placeholder="Enter Username/Email"

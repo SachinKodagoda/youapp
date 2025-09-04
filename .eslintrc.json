@@ -1,22 +1,19 @@
 {
   // "plugin:@typescript-eslint/eslint-recommended",
   // "plugin:@typescript-eslint/recommended",
-  "extends": ["next/core-web-vitals", "eslint:recommended", "prettier"],
+  // ,
+  // ,
+  // "plugins": ["eslint-plugin-sort-destructure-keys", "sort-keys-fix"],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "plugins": ["eslint-plugin-sort-destructure-keys", "sort-keys-fix"],
   "rules": {
-    "no-console": "warn"
-    // "sort-destructure-keys/sort-destructure-keys": 2
-    // "sort-keys-fix/sort-keys-fix": "warn"
-    // "sort-imports": [
-    //   "error",
-    //   {
-    //     "ignoreCase": true,
-    //     "ignoreMemberSort": true,
-    //     "memberSyntaxSortOrder": ["all", "single", "multiple", "none"],
-    //     "allowSeparatedGroups": true
-    //   }
-    // ],
-    // "sort-vars": "error",
-    // "sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false, "minKeys": 2 }]
+    "no-console": "warn",
+    "sort-destructure-keys/sort-destructure-keys": 2,
+    "sort-keys-fix/sort-keys-fix": "warn"
   }
 }
