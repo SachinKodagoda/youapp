@@ -42,20 +42,12 @@ export default function Home() {
               showPassword={showPassword}
             />
           </form>
-          <button
-            className={clsx(
-              !isValid && "login-inactive",
-              "login-button w-full rounded-lg",
-            )}
-          >
+          <button className={clsx(!isValid && "login-inactive", "login-button w-full rounded-lg")}>
             Login
           </button>
           <div className="mt-5 flex justify-center text-xs font-[500]">
             <div className="flex gap-1">
-              No account?{" "}
-              <div className="text-golden-gradient cursor-pointer">
-                Register here
-              </div>
+              No account? <div className="text-golden-gradient cursor-pointer">Register here</div>
             </div>
           </div>
         </div>

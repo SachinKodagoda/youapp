@@ -11,13 +11,13 @@ type TProps = {
 };
 
 export default function PasswordInput({
-  src,
   name,
-  placeholder,
-  onClick,
-  value,
-  showPassword,
   onChange,
+  onClick,
+  placeholder,
+  showPassword,
+  src,
+  value,
 }: TProps) {
   return (
     <div className="relative">

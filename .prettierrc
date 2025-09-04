@@ -1,7 +1,14 @@
 {
   "plugins": [
     "prettier-plugin-organize-imports",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-sort-json"
   ],
-  "tailwindFunctions": ["clsx"]
+  "printWidth": 100,
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "tailwindFunctions": ["clsx"],
+  "trailingComma": "all"
 }

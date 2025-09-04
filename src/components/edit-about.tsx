@@ -1,6 +1,8 @@
 import AboutForm from "@components/about-form";
 import AddImage from "@components/add-image";
+
 type TProps = { onEdit?: () => void };
+
 export default function EditAbout({ onEdit }: TProps) {
   return (
     <div className="detail-card relative flex flex-col gap-7 rounded-2xl p-4 text-sm">

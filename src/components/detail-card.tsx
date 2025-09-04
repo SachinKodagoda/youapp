@@ -3,7 +3,7 @@ import Image from "next/image";
 
 type TProps = { title: string; detail: string; onEdit?: () => void };
 
-export default function DetailCard({ title, detail, onEdit }: TProps) {
+export default function DetailCard({ detail, onEdit, title }: TProps) {
   return (
     <div className="detail-card relative flex flex-col gap-10 rounded-2xl p-4 text-sm">
       <h2 className="font-bold">{title}</h2>

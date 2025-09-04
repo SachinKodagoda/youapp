@@ -33,10 +33,7 @@ export default function Page() {
           <EditAbout onEdit={() => setIsInitial((val) => !val)} />
         )}
 
-        <DetailCard
-          title="Interest"
-          detail="Add in your interest to find a better match"
-        />
+        <DetailCard title="Interest" detail="Add in your interest to find a better match" />
       </div>
     </main>
   );

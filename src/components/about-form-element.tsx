@@ -1,5 +1,9 @@
 type TProps = { label: string; placeholder?: string };
-export default function AboutFormElement({ label, placeholder = "" }: TProps) {
+
+export default function AboutFormElement({ placeholder = "", label }: TProps) {
+  const obj1 = { b: 2, c: 3, a: 1 };
+
+  console.log(": =-->", obj1);
   return (
     <>
       <label htmlFor={label} className="text-xs font-[500] text-white/[0.6]">
