@@ -9,11 +9,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.7",
+    "@radix-ui/react-popover": "^1.1.15",
     "clsx": "^2.1.1",
     "lucide-react": "^0.542.0",
     "next": "13.5.11",
     "react": "^18",
+    "react-day-picker": "^9.9.0",
     "react-dom": "^18",
     "tailwind-merge": "^3.3.1"
   },

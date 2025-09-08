@@ -9,6 +9,9 @@ type TProps = { label: string; placeholder?: string };
 
 export default function AboutSelect({ label, placeholder = "" }: TProps) {
   const [value, setValue] = useState("");
+
+  /* eslint-disable-next-line no-console */
+  console.log("value: =-->", value);
   return (
     <>
       <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
@@ -30,7 +33,7 @@ export default function AboutSelect({ label, placeholder = "" }: TProps) {
             )}
           >
             <option value="" disabled hidden>
-              Select a fruit
+              {placeholder}
             </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
