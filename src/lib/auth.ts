@@ -15,6 +15,8 @@ export async function hashPassword(password: string): Promise<string> {
 
 // Verify password
 export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
+  /* eslint-disable-next-line no-console */
+  console.log("hashedPassword: =-->", hashedPassword, password);
   return await bcrypt.compare(password, hashedPassword);
 }
 

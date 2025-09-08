@@ -14,6 +14,31 @@ export default function Home() {
   const [showPassword, setShowPassword] = useState(false);
   const isValid = password.length > 0 && username.length > 0;
 
+  const onSubmit = async () => {
+    if (!isValid) return;
+
+    try {
+      const response = await fetch("/api/login", {
+        body: JSON.stringify({ password, username }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        // Handle successful login (e.g., redirect, show message, etc.)
+        console.log("Login successful:", data);
+      } else {
+        // Handle login failure (e.g., show error message)
+        console.error("Login failed:", data.message);
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+    }
+  };
+
   return (
     <main className="container flex min-h-screen flex-col justify-between gap-4 p-4">
       <nav className="flex gap-2 text-sm font-bold">
@@ -43,7 +68,11 @@ export default function Home() {
               showPassword={showPassword}
             />
           </form>
-          <button className={clsx(!isValid && "login-inactive", "login-button w-full rounded-lg")}>
+          <button
+            className={clsx(!isValid && "login-inactive", "login-button w-full rounded-lg")}
+            onClick={onSubmit}
+            // disabled={!isValid}
+          >
             Login
           </button>
           <div className="mt-5 flex justify-center text-xs font-[500]">
