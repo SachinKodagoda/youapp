@@ -22,6 +22,7 @@ export default function AboutSelect({ label, placeholder = "" }: TProps) {
         <div className="relative">
           <Select
             onChange={(e) => setValue(e.target.value)}
+            id={label}
             required
             defaultValue=""
             className={clsx(

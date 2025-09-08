@@ -9,9 +9,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.7",
     "@radix-ui/react-popover": "^1.1.15",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.542.0",
+    "mongodb": "^6.19.0",
     "next": "13.5.11",
     "react": "^18",
     "react-day-picker": "^9.9.0",
