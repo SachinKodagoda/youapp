@@ -26,7 +26,7 @@ export default function AboutMeasureElement({
   return (
     <>
       <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
-        {label}:
+        {label}
       </label>
       <div className="flex items-center rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] text-sm">
         <input

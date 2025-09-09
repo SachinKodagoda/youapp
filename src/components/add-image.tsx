@@ -19,8 +19,6 @@ export default function AddImage({ onUpload }: TProps) {
         signal,
       });
       onUpload(res.url || null);
-      /* eslint-disable-next-line no-console */
-      console.log("test=-->");
       return res;
     },
     [edgestore.publicFiles, onUpload],
@@ -28,10 +26,6 @@ export default function AddImage({ onUpload }: TProps) {
 
   return (
     <div className="flex items-center gap-4">
-      {/* <div className="flex h-[57px] w-[57px] items-center justify-center rounded-3xl bg-white/[0.08]">
-        <Image src={PlusIcon} width={20} height={20} alt="plus icon" />
-      </div>
-       */}
       <UploaderProvider uploadFn={uploadFn} autoUpload>
         <SingleImageDropzone />
       </UploaderProvider>

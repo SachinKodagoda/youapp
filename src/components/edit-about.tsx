@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/elements/loader";
 import { lengthList, weightList } from "@/data/measure-list";
 import { User } from "@/types/user";
 import AddImage from "@components/add-image";
@@ -20,6 +21,8 @@ export default function EditAbout({ onEdit, user }: TProps) {
   );
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [gender, setGender] = useState(user?.gender || "");
+  const [isLoading, setIsLoading] = useState(false);
+  const [horoscopeLoader, setHoroscopeLoader] = useState(false);
   const [uploadedLink, setUploadedLink] = useState<null | string>(null);
   const [height, setHeight] = useState(
     user?.height || {
@@ -37,6 +40,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
     const fetchZodiac = async () => {
       if (birthday) {
         try {
+          setHoroscopeLoader(true);
           const formattedDate = format(birthday, "yyyy-MM-dd");
           const response = await fetch(`/api/zodiac?date=${formattedDate}`);
           const data = await response.json();
@@ -53,6 +57,8 @@ export default function EditAbout({ onEdit, user }: TProps) {
         } catch {
           setZodiac("--");
           setHoroscope("--");
+        } finally {
+          setHoroscopeLoader(false);
         }
       } else {
         setZodiac("--");
@@ -83,6 +89,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
     };
 
     try {
+      setIsLoading(true);
       const userId = JSON.parse(localStorage.getItem("user") || "{}").id;
       const token = localStorage.getItem("token");
       const response = await fetch(`/api/update-profile`, {
@@ -101,9 +108,11 @@ export default function EditAbout({ onEdit, user }: TProps) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       toast.success("Profile updated successfully!");
+      setIsLoading(false);
       if (onEdit) onEdit();
     } catch {
       toast.error("Failed to update profile. Please try again.");
+      setIsLoading(false);
     }
   };
 
@@ -111,8 +120,11 @@ export default function EditAbout({ onEdit, user }: TProps) {
     <div className="detail-card relative flex flex-col gap-7 rounded-2xl p-4 text-sm">
       <div className="flex items-center justify-between text-sm">
         <div className="font-bold">About</div>
-        <div className="gold-text cursor-pointer font-[500]" onClick={onSubmit}>
-          Save & Update
+        <div
+          className="gold-text flex cursor-pointer items-center gap-2 font-[500]"
+          onClick={onSubmit}
+        >
+          {isLoading && <Loader size={15} />} Save & Update
         </div>
       </div>
       <AddImage
@@ -139,8 +151,8 @@ export default function EditAbout({ onEdit, user }: TProps) {
           value={birthday}
           onChange={handleDayPickerSelect}
         />
-        <AboutFormElement label="Horoscope" placeholder={horoscope} />
-        <AboutFormElement label="Zodiac" placeholder={zodiac} />
+        <AboutFormElement label="Horoscope" placeholder={horoscope} loader={horoscopeLoader} />
+        <AboutFormElement label="Zodiac" placeholder={zodiac} loader={horoscopeLoader} />
         <AboutMeasureElement
           label="Height"
           placeholder="Add height"

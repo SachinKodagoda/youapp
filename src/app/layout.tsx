@@ -20,7 +20,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <EdgeStoreProvider>
         <body className={inter.className}>
-          {children} <Toaster />
+          {children}{" "}
+          <Toaster
+            toastOptions={{
+              style: {
+                fontSize: "12px",
+              },
+            }}
+          />
         </body>
       </EdgeStoreProvider>
     </html>
