@@ -65,8 +65,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
       profileImage: user.profileImage,
       updatedAt: user.updatedAt,
       username: user.username,
-      weight: user.weight,
-      zodiac: user.zodiac,
+      weight: user?.weight,
+      zodiac: user?.zodiac,
     };
 
     const token = generateToken(userWithoutPassword);

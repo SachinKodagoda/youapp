@@ -1,4 +1,5 @@
-import { Zodiac, zodiacList } from "@/data/zodiac-list";
+import { zodiacList } from "@/data/zodiac-list";
+import { Zodiac } from "@/types/user";
 
 /**
  * Chinese zodiac (simple version — Jan 1 boundary).

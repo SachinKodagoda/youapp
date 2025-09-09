@@ -1,21 +1,4 @@
-export type ZodiacSign =
-  | "Rat"
-  | "Ox"
-  | "Tiger"
-  | "Rabbit"
-  | "Dragon"
-  | "Snake"
-  | "Horse"
-  | "Goat"
-  | "Monkey"
-  | "Rooster"
-  | "Dog"
-  | "Pig";
-
-export type Zodiac = {
-  icon: string;
-  sign: ZodiacSign;
-};
+import { Zodiac } from "@/types/user";
 
 export const zodiacList: Zodiac[] = [
   {

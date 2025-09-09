@@ -1,4 +1,5 @@
-import { HoroscopeInfo, horoscopeList } from "@/data/horoscope-list";
+import { horoscopeList } from "@/data/horoscope-list";
+import { HoroscopeInfo } from "@/types/user";
 
 export function getHoroscope(month: number, day: number): HoroscopeInfo {
   if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {

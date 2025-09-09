@@ -33,19 +33,34 @@ export interface LoginResponse {
   success: boolean;
   message: string;
   token?: string;
-  user?: {
-    _id: string;
-    birthday?: Date;
-    createdAt: Date;
-    displayName?: string;
-    email: string;
-    gender?: string;
-    height?: number;
-    horoscope?: string;
-    profileImage?: string;
-    updatedAt: Date;
-    username: string;
-    weight?: number;
-    zodiac?: string;
-  };
+  user?: Omit<User, "_id" | "password"> & { _id: string };
 }
+
+export interface HoroscopeInfo {
+  dateRange: string;
+  element: "fire" | "earth" | "air" | "water" | "Unknown";
+  modality: "cardinal" | "fixed" | "mutable" | "Unknown";
+  symbol: string;
+  sign: string;
+  traits: string[];
+  icon: string;
+}
+
+export type ZodiacSign =
+  | "Rat"
+  | "Ox"
+  | "Tiger"
+  | "Rabbit"
+  | "Dragon"
+  | "Snake"
+  | "Horse"
+  | "Goat"
+  | "Monkey"
+  | "Rooster"
+  | "Dog"
+  | "Pig";
+
+export type Zodiac = {
+  icon: string;
+  sign: ZodiacSign;
+};

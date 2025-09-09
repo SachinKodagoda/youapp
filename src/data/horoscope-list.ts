@@ -1,12 +1,5 @@
-export interface HoroscopeInfo {
-  dateRange: string;
-  element: "fire" | "earth" | "air" | "water" | "Unknown";
-  modality: "cardinal" | "fixed" | "mutable" | "Unknown";
-  symbol: string;
-  sign: string;
-  traits: string[];
-  icon: string;
-}
+import { HoroscopeInfo } from "@/types/user";
+
 export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "March 21 - April 19",
