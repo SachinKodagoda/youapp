@@ -32,7 +32,7 @@ export default function AboutMeasureElement({
         <input
           type="number"
           id={label}
-          className="w-full flex-auto bg-transparent py-3 pl-3 pr-0 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
+          className="w-[calc(100%-50px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
           placeholder={placeholder}
           value={value.amount || 0}
           onChange={(e) =>
@@ -44,7 +44,7 @@ export default function AboutMeasureElement({
           }
         />
 
-        <div className="relative flex-none">
+        <div className="relative w-[50px] flex-none">
           <Select
             value={value.unit}
             onChange={(e) =>
@@ -56,7 +56,7 @@ export default function AboutMeasureElement({
             }
             required
             className={clsx(
-              "relative w-full text-right leading-[1.7]",
+              "relative w-full text-left leading-[1.7]",
               "appearance-none bg-transparent p-0 pr-3 text-sm/6 text-white",
               "outline-none ring-0 focus:ring-0",
               "*:text-black",

@@ -26,11 +26,12 @@ export default function AboutSelect({ label, onChange, placeholder = "", value =
             value={value}
             required
             className={clsx(
-              "border border-white/[0.22] px-3 py-3 pr-7 text-right",
+              "border border-white/[0.22] px-3 py-3 pr-7 !text-right",
               "block w-full appearance-none rounded-lg bg-white/5 text-sm/6 text-white",
               "outline-none ring-0 focus:ring-0",
               "*:text-black",
               "[&:has(option[value='']:checked)]:text-white/[0.33]",
+              "direction-rtl",
             )}
           >
             <option value="" disabled hidden>

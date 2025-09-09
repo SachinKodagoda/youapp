@@ -3,14 +3,16 @@ import { calculateAge } from "@/utils/calculate-age";
 import { getHoroscopeIcon } from "@/utils/get-horoscope";
 import { getZodiacIcon } from "@/utils/get-zodiac";
 import Image from "next/image";
+import Loader from "./elements/loader";
 
 type TProps = {
   user?: User | null;
   horoscope?: string;
   zodiac?: string;
+  loading: boolean;
 };
 
-export default function ProfileCard({ horoscope, user, zodiac }: TProps) {
+export default function ProfileCard({ horoscope, loading, user, zodiac }: TProps) {
   return (
     <div className="profile-card relative min-h-[190px] rounded-2xl p-4">
       {user?.profileImage && (
@@ -24,8 +26,13 @@ export default function ProfileCard({ horoscope, user, zodiac }: TProps) {
           loading="lazy"
         />
       )}
-      <div className="absolute inset-0 left-0 top-0 rounded-2xl bg-gradient-to-b from-black/[0.76] via-transparent via-45% to-black"></div>
 
+      <div className="absolute inset-0 left-0 top-0 rounded-2xl bg-gradient-to-b from-black/[0.76] via-transparent via-45% to-black"></div>
+      {loading && (
+        <div className="absolute inset-0 left-0 top-0 flex items-center justify-center backdrop-blur-md">
+          <Loader />
+        </div>
+      )}
       <div className="absolute bottom-4 left-4 text-sm">
         <div className="mb-[2px] text-base font-bold">
           {user?.displayName}
