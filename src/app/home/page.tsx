@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const [isInitial, setIsInitial] = useState(true);
@@ -59,12 +59,13 @@ export default function Page() {
       setUser(data.user);
       fetchZodiac(data.user?.birthday ? new Date(data.user.birthday) : null);
     } catch {
-      // toast.error("Something went wrong. Please try again later.");
+      toast.error("Something went wrong. Please try again later.");
     }
   };
 
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

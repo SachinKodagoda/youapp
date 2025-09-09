@@ -21,9 +21,6 @@ async function getProfileHandler(request: AuthenticatedRequest): Promise<NextRes
       { projection: { password: 0 } }, // Exclude password from response
     );
 
-    /* eslint-disable-next-line no-console */
-    console.log("user: =-->", user);
-
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
@@ -39,10 +36,7 @@ async function getProfileHandler(request: AuthenticatedRequest): Promise<NextRes
       },
       { status: 200 },
     );
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error("Get profile error:", error);
-
+  } catch {
     return NextResponse.json(
       {
         message: "Internal server error",

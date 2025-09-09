@@ -70,7 +70,6 @@ export default function EditAbout({ onEdit, user }: TProps) {
   };
 
   const onSubmit = async () => {
-    // if (onEdit) onEdit();
     const profileData = {
       birthday: birthday ? format(birthday, "yyyy-MM-dd") : null,
       displayName,

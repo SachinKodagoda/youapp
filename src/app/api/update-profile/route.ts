@@ -62,10 +62,7 @@ async function updateProfileHandler(request: AuthenticatedRequest): Promise<Next
       },
       { status: 200 },
     );
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error("Update profile error:", error);
-
+  } catch {
     return NextResponse.json(
       {
         message: "Internal server error",

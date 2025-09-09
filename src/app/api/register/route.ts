@@ -115,10 +115,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<RegisterR
       },
       { status: 201 },
     );
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error("Registration error:", error);
-
+  } catch {
     return NextResponse.json(
       {
         message: "Internal server error",

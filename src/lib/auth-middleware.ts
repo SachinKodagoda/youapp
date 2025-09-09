@@ -38,10 +38,7 @@ export function withAuth(handler: (req: AuthenticatedRequest) => Promise<NextRes
 
       // Call the actual handler
       return handler(authenticatedRequest);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error("Auth middleware error:", error);
-
+    } catch {
       return NextResponse.json({ message: "Authentication failed" }, { status: 401 });
     }
   };

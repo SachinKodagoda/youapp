@@ -12,8 +12,6 @@ type TProps = {
 };
 
 export default function AboutDate({ label, onChange, placeholder = "", value }: TProps) {
-  /* eslint-disable-next-line no-console */
-  console.log("value: =-->", value);
   const today = new Date();
   return (
     <>
