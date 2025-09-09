@@ -41,9 +41,14 @@ export function getHoroscope(month: number, day: number): HoroscopeInfo {
   return {
     dateRange: "Unknown",
     element: "Unknown",
+    icon: "❓",
     modality: "Unknown",
     sign: "Unknown",
     symbol: "Unknown",
     traits: [],
   };
 }
+
+export const getHoroscopeIcon = (sign: string): string | null => {
+  return horoscopeList.find((horoscope) => horoscope.sign === sign)?.icon || null;
+};

@@ -8,3 +8,7 @@ export function getZodiac(year: number): Zodiac {
   const index = (year - 1984) % 12; // 1984 was a Rat year
   return zodiacList[(index + 12) % 12];
 }
+
+export const getZodiacIcon = (zodiac: string): string | null => {
+  return zodiacList.find((z) => z.sign === zodiac)?.icon || null;
+};

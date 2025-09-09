@@ -5,11 +5,13 @@ export interface HoroscopeInfo {
   symbol: string;
   sign: string;
   traits: string[];
+  icon: string;
 }
 export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "March 21 - April 19",
     element: "fire",
+    icon: "♈",
     modality: "cardinal",
     sign: "Aries",
     symbol: "Ram",
@@ -18,6 +20,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "April 20 - May 20",
     element: "earth",
+    icon: "♉",
     modality: "fixed",
     sign: "Taurus",
     symbol: "Bull",
@@ -26,6 +29,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "May 21 - June 21",
     element: "air",
+    icon: "♊",
     modality: "mutable",
     sign: "Gemini",
     symbol: "Twins",
@@ -34,6 +38,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "June 22 - July 22",
     element: "water",
+    icon: "♋",
     modality: "cardinal",
     sign: "Cancer",
     symbol: "Crab",
@@ -42,6 +47,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "July 23 - August 22",
     element: "fire",
+    icon: "♌",
     modality: "fixed",
     sign: "Leo",
     symbol: "Lion",
@@ -50,6 +56,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "August 23 - September 22",
     element: "earth",
+    icon: "♍",
     modality: "mutable",
     sign: "Virgo",
     symbol: "Virgin",
@@ -58,6 +65,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "September 23 - October 23",
     element: "air",
+    icon: "♎",
     modality: "cardinal",
     sign: "Libra",
     symbol: "Balance",
@@ -66,6 +74,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "October 24 - November 21",
     element: "water",
+    icon: "♏",
     modality: "fixed",
     sign: "Scorpio",
     symbol: "Scorpion",
@@ -74,6 +83,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "November 22 - December 21",
     element: "fire",
+    icon: "♐",
     modality: "mutable",
     sign: "Sagittarius",
     symbol: "Archer",
@@ -82,6 +92,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "December 22 - January 19",
     element: "earth",
+    icon: "♑",
     modality: "cardinal",
     sign: "Capricorn",
     symbol: "Goat",
@@ -90,6 +101,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "January 20 - February 18",
     element: "air",
+    icon: "♒",
     modality: "fixed",
     sign: "Aquarius",
     symbol: "Water Bearer",
@@ -98,6 +110,7 @@ export const horoscopeList: HoroscopeInfo[] = [
   {
     dateRange: "February 19 - March 20",
     element: "water",
+    icon: "♓",
     modality: "mutable",
     sign: "Pisces",
     symbol: "Fish",

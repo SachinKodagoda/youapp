@@ -21,6 +21,9 @@ async function getProfileHandler(request: AuthenticatedRequest): Promise<NextRes
       { projection: { password: 0 } }, // Exclude password from response
     );
 
+    /* eslint-disable-next-line no-console */
+    console.log("user: =-->", user);
+
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
