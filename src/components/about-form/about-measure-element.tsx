@@ -28,25 +28,23 @@ export default function AboutMeasureElement({
       <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
         {label}:
       </label>
-      <div className="flex items-center rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06]">
-        <div className="relative flex flex-auto items-center">
-          <input
-            type="number"
-            id={label}
-            className="w-full bg-transparent py-3 pl-3 pr-0 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
-            placeholder={placeholder}
-            value={value.amount || 0}
-            onChange={(e) =>
-              onChange &&
-              onChange({
-                amount: +(e.target.value || 0),
-                unit: value.unit || "",
-              })
-            }
-          />
-        </div>
+      <div className="flex items-center rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] text-sm">
+        <input
+          type="number"
+          id={label}
+          className="w-full flex-auto bg-transparent py-3 pl-3 pr-0 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
+          placeholder={placeholder}
+          value={value.amount || 0}
+          onChange={(e) =>
+            onChange &&
+            onChange({
+              amount: +(e.target.value || 0),
+              unit: value.unit || "",
+            })
+          }
+        />
 
-        <div className="relative flex flex-auto items-center">
+        <div className="relative flex-none">
           <Select
             value={value.unit}
             onChange={(e) =>
@@ -58,8 +56,8 @@ export default function AboutMeasureElement({
             }
             required
             className={clsx(
-              "w-full text-right",
-              "appearance-none bg-transparent pr-3 text-sm/6 text-white",
+              "relative w-full text-right leading-[1.7]",
+              "appearance-none bg-transparent p-0 pr-3 text-sm/6 text-white",
               "outline-none ring-0 focus:ring-0",
               "*:text-black",
               "[&:has(option[value='']:checked)]:text-white/[0.33]",

@@ -25,7 +25,6 @@ export default function AboutSelect({ label, onChange, placeholder = "", value =
             id={label}
             value={value}
             required
-            defaultValue=""
             className={clsx(
               "border border-white/[0.22] px-3 py-3 pr-7 text-right",
               "block w-full appearance-none rounded-lg bg-white/5 text-sm/6 text-white",
@@ -44,8 +43,8 @@ export default function AboutSelect({ label, onChange, placeholder = "", value =
           <Image
             src={DownArrow}
             width={10}
-            height={5}
-            alt="back icon"
+            height={6}
+            alt="down icon"
             className="group pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 fill-white/60 outline-none"
             aria-hidden="true"
           />

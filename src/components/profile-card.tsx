@@ -17,7 +17,10 @@ export default function ProfileCard({ horoscope, user, zodiac }: TProps) {
         src="https://files.edgestore.dev/7nkrwkt3m5fglcd3/publicFiles/_public/b60ac03e-1f78-451e-85e6-9afd8aa465ec.jpg"
         alt="profile cover"
         fill
+        sizes="(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 60vw, 40vw"
         className="rounded-2xl object-cover"
+        quality={75}
+        loading="lazy"
       />
       <div className="absolute inset-0 left-0 top-0 rounded-2xl bg-gradient-to-b from-black/[0.76] via-transparent via-45% to-black"></div>
       {/* <Image

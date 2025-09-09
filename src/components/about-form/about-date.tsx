@@ -15,7 +15,7 @@ export default function AboutDate({ label, onChange, placeholder = "", value }: 
   const today = new Date();
   return (
     <>
-      <label className="text-[13px] font-[500] text-white/[0.33]">{label}:</label>
+      <div className="text-[13px] font-[500] text-white/[0.33]">{label}:</div>
 
       <Popover.Root>
         <Popover.Trigger asChild>

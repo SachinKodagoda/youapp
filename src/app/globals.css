@@ -36,7 +36,9 @@ body {
     #09141a 100%
   );
   margin: auto;
-  width: 375px;
+  /* max-width: 600px; */
+  max-width: 375px;
+  width: 100vw;
 }
 
 .login-button {
@@ -92,7 +94,9 @@ body {
   color: #fff;
   margin: auto;
   background: #09141a;
-  width: 375px;
+  /* max-width: 600px; */
+  width: 100vw;
+  max-width: 375px;
 }
 
 .gold-text {
@@ -108,4 +112,12 @@ body {
   );
   background-clip: text;
   color: transparent;
+}
+
+.profile-card {
+  background: #162329;
+}
+
+.detail-card {
+  background: #0e191f;
 }

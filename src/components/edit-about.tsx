@@ -20,6 +20,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
   );
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [gender, setGender] = useState(user?.gender || "");
+  const [uploadedLink, setUploadedLink] = useState<null | string>(null);
   const [height, setHeight] = useState(
     user?.height || {
       amount: 0,
@@ -76,6 +77,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
       gender,
       height,
       horoscope,
+      profileImage: uploadedLink ? uploadedLink : user?.profileImage || null,
       weight,
       zodiac,
     };
@@ -113,7 +115,11 @@ export default function EditAbout({ onEdit, user }: TProps) {
           Save & Update
         </div>
       </div>
-      <AddImage />
+      <AddImage
+        onUpload={(url) => {
+          setUploadedLink(url || null);
+        }}
+      />
       <form className="grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-3">
         <AboutFormElement
           label="Display name"

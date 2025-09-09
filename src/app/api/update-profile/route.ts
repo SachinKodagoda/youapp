@@ -5,6 +5,9 @@ import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 interface UpdateProfileRequest {
+  profileImage?: string;
+  horoscope?: string;
+  zodiac?: string;
   birthday?: string;
   displayName?: string;
   gender?: Gender;
@@ -36,6 +39,9 @@ async function updateProfileHandler(request: AuthenticatedRequest): Promise<Next
     if (height !== undefined) updateData.height = height;
     if (weight !== undefined) updateData.weight = weight;
     if (birthday !== undefined) updateData.birthday = new Date(birthday);
+    if (body.horoscope !== undefined) updateData.horoscope = body.horoscope;
+    if (body.zodiac !== undefined) updateData.zodiac = body.zodiac;
+    if (body.profileImage !== undefined) updateData.profileImage = body.profileImage;
 
     // Update user profile
     const objectId = new ObjectId(request.user.id);
