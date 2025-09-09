@@ -1,9 +1,4 @@
 {
-  // "plugin:@typescript-eslint/eslint-recommended",
-  // "plugin:@typescript-eslint/recommended",
-  // ,
-  // ,
-  // "plugins": ["eslint-plugin-sort-destructure-keys", "sort-keys-fix"],
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
