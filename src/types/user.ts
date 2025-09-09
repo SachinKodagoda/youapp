@@ -1,23 +1,24 @@
 import { ObjectId } from "mongodb";
 
+export type Gender = "male" | "female" | "other";
+
+export type Measurements = {
+  unit: string;
+  amount: number;
+};
+
 export interface User {
   _id?: ObjectId;
   username: string;
   email: string;
   password: string;
   displayName?: string;
-  gender?: "male" | "female" | "other";
+  gender?: Gender;
   birthday?: Date;
   horoscope?: string;
   zodiac?: string;
-  height?: {
-    unit: string;
-    amount: number;
-  };
-  weight?: {
-    unit: string;
-    amount: number;
-  };
+  height?: Measurements;
+  weight?: Measurements;
   profileImage?: string;
   createdAt: Date;
   updatedAt: Date;

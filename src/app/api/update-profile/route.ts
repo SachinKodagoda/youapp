@@ -1,15 +1,15 @@
 import { AuthenticatedRequest, withAuth } from "@/lib/auth-middleware";
 import { connectToDatabase } from "@/lib/mongodb";
-import { User } from "@/types/user";
+import { Gender, Measurements, User } from "@/types/user";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 interface UpdateProfileRequest {
   birthday?: string;
   displayName?: string;
-  gender?: string;
-  height?: number;
-  weight?: number;
+  gender?: Gender;
+  height?: Measurements;
+  weight?: Measurements;
 }
 
 async function updateProfileHandler(request: AuthenticatedRequest): Promise<NextResponse> {
