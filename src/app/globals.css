@@ -36,8 +36,8 @@ body {
     #09141a 100%
   );
   margin: auto;
-  /* max-width: 600px; */
-  max-width: 375px;
+  max-width: 600px;
+  /* max-width: 375px; */
   width: 100vw;
 }
 
@@ -94,9 +94,9 @@ body {
   color: #fff;
   margin: auto;
   background: #09141a;
-  /* max-width: 600px; */
+  max-width: 600px;
   width: 100vw;
-  max-width: 375px;
+  /* max-width: 375px; */
 }
 
 .gold-text {
