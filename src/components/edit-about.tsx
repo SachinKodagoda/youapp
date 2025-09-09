@@ -1,6 +1,6 @@
 "use client";
 import Loader from "@/components/elements/loader";
-import { lengthList, weightList } from "@/data/measure-list";
+import { lengthListOptions, weightListOptions } from "@/data/measure-list";
 import { User } from "@/types/user";
 import AddImage from "@components/add-image";
 import { format } from "date-fns";
@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import AboutDate from "./about-form/about-date";
 import AboutFormElement from "./about-form/about-form-element";
+import AboutGender from "./about-form/about-gender";
 import AboutMeasureElement from "./about-form/about-measure-element";
-import AboutSelect from "./about-form/about-select";
 
 type TProps = { onEdit?: () => void; user?: User | null };
 
@@ -139,7 +139,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
           value={displayName}
           onChange={(value) => setDisplayName(value)}
         />
-        <AboutSelect
+        <AboutGender
           label="Gender"
           placeholder="Select Gender"
           value={gender}
@@ -158,14 +158,14 @@ export default function EditAbout({ onEdit, user }: TProps) {
           placeholder="Add height"
           value={height}
           onChange={(value) => setHeight(value)}
-          measureList={lengthList}
+          options={lengthListOptions}
         />
         <AboutMeasureElement
           label="Weight"
           placeholder="Add weight"
           value={weight}
           onChange={(value) => setWeight(value)}
-          measureList={weightList}
+          options={weightListOptions}
         />
       </form>
     </div>

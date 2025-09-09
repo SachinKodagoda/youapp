@@ -1,28 +1,33 @@
 "use client";
-import { Select } from "@headlessui/react";
-import clsx from "clsx";
+import { useMemo } from "react";
+import Select from "react-select";
 
 type TProps = {
   label: string;
   placeholder?: string;
-  measureList: string[];
   value?: {
     unit: string;
     amount: number;
   };
   onChange?: (value: { unit: string; amount: number }) => void;
+  options: { label: string; value: string }[];
 };
 
 export default function AboutMeasureElement({
   label,
-  measureList = [],
   onChange,
+  options = [],
   placeholder = "",
   value = {
     amount: 0,
     unit: "",
   },
 }: TProps) {
+  const selectedOption = useMemo(() => {
+    return value.unit ? options.find((option) => option.value === value.unit) || null : null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value.unit]);
+
   return (
     <>
       <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
@@ -30,45 +35,50 @@ export default function AboutMeasureElement({
       </label>
       <div className="flex items-center rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] text-sm">
         <input
-          type="number"
+          type="text"
           id={label}
-          className="w-[calc(100%-50px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
+          className="w-[calc(100%-85px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
           placeholder={placeholder}
           value={value.amount || 0}
-          onChange={(e) =>
-            onChange &&
-            onChange({
-              amount: +(e.target.value || 0),
-              unit: value.unit || "",
-            })
-          }
+          onChange={(e) => {
+            if (onChange) {
+              const inputValue = e.target.value;
+              const numericValue = inputValue === "" ? 0 : parseFloat(inputValue) || 0;
+              onChange({
+                amount: numericValue,
+                unit: value.unit || "",
+              });
+            }
+          }}
         />
 
-        <div className="relative w-[50px] flex-none">
+        <div className="relative w-[80px] flex-none">
           <Select
-            value={value.unit}
-            onChange={(e) =>
-              onChange &&
-              onChange({
-                amount: +(value.amount || 0),
-                unit: e.target.value || "",
-              })
-            }
-            required
-            className={clsx(
-              "relative w-full text-left leading-[1.7]",
-              "appearance-none bg-transparent p-0 pr-3 text-sm/6 text-white",
-              "outline-none ring-0 focus:ring-0",
-              "*:text-black",
-              "[&:has(option[value='']:checked)]:text-white/[0.33]",
-            )}
-          >
-            {measureList.map((unit) => (
-              <option key={unit} value={unit}>
-                {unit}
-              </option>
-            ))}
-          </Select>
+            isSearchable={false}
+            placeholder={placeholder}
+            value={selectedOption}
+            onChange={(option) => {
+              if (onChange && option) {
+                onChange({
+                  amount: value.amount,
+                  unit: option?.value,
+                });
+              }
+            }}
+            options={options}
+            className="react-select-container"
+            classNamePrefix="react-select"
+            unstyled={true}
+            classNames={{
+              control: () =>
+                "flex justify-between border border-white/[0.22] px-3 py-3 rounded-lg bg-white/5 text-white",
+              dropdownIndicator: () => "text-white/60 hidden",
+              menu: () => "border border-white/[0.22] bg-[#0e191f] rounded-lg mt-1 text-right",
+              option: () => "px-3 py-2 hover:bg-white/5 text-white",
+              placeholder: () => "text-white/[0.33] text-right",
+              singleValue: () => "text-white text-right",
+            }}
+          />
         </div>
       </div>
     </>

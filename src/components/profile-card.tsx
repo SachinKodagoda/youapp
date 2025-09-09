@@ -34,7 +34,7 @@ export default function ProfileCard({ horoscope, loading, user, zodiac }: TProps
         </div>
       )}
       <div className="absolute bottom-4 left-4 text-sm">
-        <div className="mb-[2px] text-base font-bold">
+        <div className="shadow-text mb-[2px] text-base font-bold">
           {user?.displayName}
           {user?.birthday ? `, ${calculateAge(`${user?.birthday}`)}` : ""}
         </div>

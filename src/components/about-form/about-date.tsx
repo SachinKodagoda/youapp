@@ -29,7 +29,7 @@ export default function AboutDate({ label, onChange, placeholder = "", value }: 
         </Popover.Trigger>
         <Popover.Portal>
           <Popover.Content>
-            <div className="w-auto scale-75 overflow-hidden bg-white p-6">
+            <div className="w-auto scale-75 overflow-hidden rounded-lg border border-white/[0.22] bg-[#0e191f] p-6 text-white">
               <DayPicker
                 navLayout="around"
                 animate

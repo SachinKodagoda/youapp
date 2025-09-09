@@ -121,3 +121,12 @@ body {
 .detail-card {
   background: #0e191f;
 }
+
+.rdp-root {
+  --rdp-accent-color: white;
+  --rdp-background-color: white;
+}
+
+.shadow-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
