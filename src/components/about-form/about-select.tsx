@@ -3,15 +3,15 @@ import DownArrow from "@assets/images/down-arrow-icon.svg";
 import { Select } from "@headlessui/react";
 import clsx from "clsx";
 import Image from "next/image";
-import { useState } from "react";
 
-type TProps = { label: string; placeholder?: string };
+type TProps = {
+  label: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+};
 
-export default function AboutSelect({ label, placeholder = "" }: TProps) {
-  const [value, setValue] = useState("");
-
-  /* eslint-disable-next-line no-console */
-  console.log("value: =-->", value);
+export default function AboutSelect({ label, onChange, placeholder = "", value = "" }: TProps) {
   return (
     <>
       <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
@@ -21,8 +21,9 @@ export default function AboutSelect({ label, placeholder = "" }: TProps) {
       <div className="w-full">
         <div className="relative">
           <Select
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => onChange && onChange(e.target.value)}
             id={label}
+            value={value}
             required
             defaultValue=""
             className={clsx(
@@ -38,6 +39,7 @@ export default function AboutSelect({ label, placeholder = "" }: TProps) {
             </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="other">Other</option>
           </Select>
           <Image
             src={DownArrow}

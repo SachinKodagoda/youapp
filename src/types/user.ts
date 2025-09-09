@@ -6,12 +6,18 @@ export interface User {
   email: string;
   password: string;
   displayName?: string;
-  gender?: string;
+  gender?: "male" | "female" | "other";
   birthday?: Date;
   horoscope?: string;
   zodiac?: string;
-  height?: number;
-  weight?: number;
+  height?: {
+    unit: string;
+    amount: number;
+  };
+  weight?: {
+    unit: string;
+    amount: number;
+  };
   profileImage?: string;
   createdAt: Date;
   updatedAt: Date;

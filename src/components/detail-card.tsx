@@ -59,12 +59,18 @@ export default function DetailCard({
 
             {user.height && (
               <div>
-                Height: <span className="text-white">{user.height} cm</span>
+                Height:{" "}
+                <span className="text-white">
+                  {user?.height?.amount} {user?.height?.unit}
+                </span>
               </div>
             )}
             {user.weight && (
               <div>
-                Weight: <span className="text-white">{user.weight} kg</span>
+                Weight:{" "}
+                <span className="text-white">
+                  {user?.weight?.amount} {user?.weight?.unit}
+                </span>
               </div>
             )}
           </div>

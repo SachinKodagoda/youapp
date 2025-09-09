@@ -2,23 +2,19 @@
 import { DayPicker } from "react-day-picker";
 
 import * as Popover from "@radix-ui/react-popover";
-import { format } from "date-fns";
+import { format, startOfMonth } from "date-fns";
 
 type TProps = {
   label: string;
   placeholder?: string;
-  birthday: Date | undefined;
-  handleDayPickerSelect: (date: Date | undefined) => void;
+  value: Date | undefined;
+  onChange: (date: Date | undefined) => void;
 };
 
-export default function AboutDate({
-  birthday,
-  handleDayPickerSelect,
-  label,
-  placeholder = "",
-}: TProps) {
-  // .toLocaleDateString()
-
+export default function AboutDate({ label, onChange, placeholder = "", value }: TProps) {
+  /* eslint-disable-next-line no-console */
+  console.log("value: =-->", value);
+  const today = new Date();
   return (
     <>
       <label className="text-[13px] font-[500] text-white/[0.33]">{label}:</label>
@@ -26,8 +22,8 @@ export default function AboutDate({
       <Popover.Root>
         <Popover.Trigger asChild>
           <div className="w-full rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] p-3 text-right text-[13px] outline-none">
-            {birthday ? (
-              <span>{format(birthday, "dd MM yyyy")}</span>
+            {value ? (
+              <span>{format(value, "dd MM yyyy")}</span>
             ) : (
               <span className="text-white/[0.3]">{placeholder}</span>
             )}
@@ -40,9 +36,11 @@ export default function AboutDate({
                 navLayout="around"
                 animate
                 captionLayout="dropdown"
+                defaultMonth={value ? startOfMonth(value) : startOfMonth(today)}
                 mode="single"
-                selected={birthday}
-                onSelect={handleDayPickerSelect}
+                selected={value}
+                onSelect={onChange}
+                disabled={{ after: today }}
               />
             </div>
           </Popover.Content>

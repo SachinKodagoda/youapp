@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const [isInitial, setIsInitial] = useState(true);
@@ -67,37 +68,46 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="container-black flex min-h-screen flex-col gap-8 p-4">
-      <div className="flex items-center justify-between">
-        <Link href="/">
-          <div className="flex w-14 cursor-pointer gap-2 text-sm font-bold">
-            <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />
-            Back
+    <>
+      <main className="container-black flex min-h-screen flex-col gap-8 p-4">
+        <div className="flex items-center justify-between">
+          <Link href="/">
+            <div className="flex w-14 cursor-pointer gap-2 text-sm font-bold">
+              <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />
+              Back
+            </div>
+          </Link>
+
+          <div className="flex flex-auto justify-center">{user?.username}</div>
+          <div className="flex w-11 justify-end">
+            <Image src={MenuIcon} width={22} height={6} alt="back icon" className="w-auto" />
           </div>
-        </Link>
-
-        <div className="flex flex-auto justify-center">{user?.username}</div>
-        <div className="flex w-11 justify-end">
-          <Image src={MenuIcon} width={22} height={6} alt="back icon" className="w-auto" />
         </div>
-      </div>
-      <div className="flex flex-col gap-4">
-        <ProfileCard user={user} horoscope={horoscope} zodiac={zodiac} />
-        {isInitial ? (
-          <DetailCard
-            title="About"
-            detail="Add in your your to help others know you better"
-            onEdit={() => setIsInitial((val) => !val)}
-            user={user}
-            horoscope={horoscope}
-            zodiac={zodiac}
-          />
-        ) : (
-          <EditAbout onEdit={() => setIsInitial((val) => !val)} />
-        )}
+        <div className="flex flex-col gap-4">
+          <ProfileCard user={user} horoscope={horoscope} zodiac={zodiac} />
+          {isInitial ? (
+            <DetailCard
+              title="About"
+              detail="Add in your your to help others know you better"
+              onEdit={() => setIsInitial((val) => !val)}
+              user={user}
+              horoscope={horoscope}
+              zodiac={zodiac}
+            />
+          ) : (
+            <EditAbout
+              onEdit={() => {
+                getUserData();
+                setIsInitial((val) => !val);
+              }}
+              user={user}
+            />
+          )}
 
-        <DetailCard title="Interest" detail="Add in your interest to find a better match" />
-      </div>
-    </main>
+          <DetailCard title="Interest" detail="Add in your interest to find a better match" />
+        </div>
+      </main>
+      <Toaster />
+    </>
   );
 }

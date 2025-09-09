@@ -1,20 +1,37 @@
 "use client";
 import { lengthList, weightList } from "@/data/measure-list";
+import { User } from "@/types/user";
 import AddImage from "@components/add-image";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import AboutDate from "./about-form/about-date";
 import AboutFormElement from "./about-form/about-form-element";
 import AboutMeasureElement from "./about-form/about-measure-element";
 import AboutSelect from "./about-form/about-select";
 
-type TProps = { onEdit?: () => void };
+type TProps = { onEdit?: () => void; user?: User | null };
 
-export default function EditAbout({ onEdit }: TProps) {
+export default function EditAbout({ onEdit, user }: TProps) {
   const [zodiac, setZodiac] = useState("--");
   const [horoscope, setHoroscope] = useState("--");
-  const [birthday, setBirthday] = useState<Date>();
-
+  const [birthday, setBirthday] = useState<Date | undefined>(
+    user?.birthday ? new Date(user.birthday) : undefined,
+  );
+  const [displayName, setDisplayName] = useState(user?.displayName || "");
+  const [gender, setGender] = useState(user?.gender || "");
+  const [height, setHeight] = useState(
+    user?.height || {
+      amount: 0,
+      unit: "inch",
+    },
+  );
+  const [weight, setWeight] = useState(
+    user?.weight || {
+      amount: 0,
+      unit: "kg",
+    },
+  );
   useEffect(() => {
     const fetchZodiac = async () => {
       if (birthday) {
@@ -54,33 +71,39 @@ export default function EditAbout({ onEdit }: TProps) {
 
   const onSubmit = async () => {
     // if (onEdit) onEdit();
-    // const formData = new FormData(document.querySelector("form") as HTMLFormElement);
     const profileData = {
       birthday: birthday ? format(birthday, "yyyy-MM-dd") : null,
-      // displayName: formData.get("displayName"),
-      // gender: formData.get("gender"),
-      // height: formData.get("height"),
-      // horoscope,
-      // weight: formData.get("weight"),
-      // zodiac,
+      displayName,
+      gender,
+      height,
+      horoscope,
+      weight,
+      zodiac,
     };
-    const userId = JSON.parse(localStorage.getItem("user") || "{}").id;
-    const token = localStorage.getItem("token");
-    const response = await fetch(`/api/update-profile`, {
-      body: JSON.stringify({
-        userId,
-        ...profileData,
-      }),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-    });
 
-    const data = await response.json();
-    /* eslint-disable-next-line no-console */
-    console.log("data: =-->", data);
+    try {
+      const userId = JSON.parse(localStorage.getItem("user") || "{}").id;
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/update-profile`, {
+        body: JSON.stringify({
+          userId,
+          ...profileData,
+        }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      toast.success("Profile updated successfully!");
+      if (onEdit) onEdit();
+    } catch {
+      toast.error("Failed to update profile. Please try again.");
+    }
   };
 
   return (
@@ -93,18 +116,40 @@ export default function EditAbout({ onEdit }: TProps) {
       </div>
       <AddImage />
       <form className="grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-3">
-        <AboutFormElement label="Display name" placeholder="Enter name" />
-        <AboutSelect label="Gender" placeholder="Select Gender" />
+        <AboutFormElement
+          label="Display name"
+          placeholder="Enter name"
+          value={displayName}
+          onChange={(value) => setDisplayName(value)}
+        />
+        <AboutSelect
+          label="Gender"
+          placeholder="Select Gender"
+          value={gender}
+          onChange={(value) => setGender(value)}
+        />
         <AboutDate
           label="Birthday"
           placeholder="DD MM YYYY"
-          birthday={birthday}
-          handleDayPickerSelect={handleDayPickerSelect}
+          value={birthday}
+          onChange={handleDayPickerSelect}
         />
         <AboutFormElement label="Horoscope" placeholder={horoscope} />
         <AboutFormElement label="Zodiac" placeholder={zodiac} />
-        <AboutMeasureElement label="Height" placeholder="Add height" measureList={lengthList} />
-        <AboutMeasureElement label="Weight" placeholder="Add weight" measureList={weightList} />
+        <AboutMeasureElement
+          label="Height"
+          placeholder="Add height"
+          value={height}
+          onChange={(value) => setHeight(value)}
+          measureList={lengthList}
+        />
+        <AboutMeasureElement
+          label="Weight"
+          placeholder="Add weight"
+          value={weight}
+          onChange={(value) => setWeight(value)}
+          measureList={weightList}
+        />
       </form>
     </div>
   );
