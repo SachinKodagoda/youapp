@@ -3,8 +3,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/elements/dropdown-menu";
 import { User } from "@/types/user";
@@ -13,6 +11,7 @@ import MenuIcon from "@assets/images/menu-icon.svg";
 import DetailCard from "@components/detail-card";
 import EditAbout from "@components/edit-about";
 import ProfileCard from "@components/profile-card";
+import { LogOut, User as UserIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -64,8 +63,15 @@ export default function Page() {
     <main className="container-black flex min-h-dvh flex-col gap-8 p-4">
       <div className="flex items-center justify-between">
         <div className="flex w-14 cursor-pointer gap-2 text-sm font-bold">
-          <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />
-          Back
+          {!isInitial && (
+            <div
+              onClick={() => setIsInitial((val) => !val)}
+              className="flex cursor-pointer select-none items-center gap-2"
+            >
+              <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />
+              Back
+            </div>
+          )}
         </div>
 
         <div className="flex flex-auto justify-center">{user?.username}</div>
@@ -81,11 +87,10 @@ export default function Page() {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mr-4 border-0 bg-[#162329] text-white">
-              <DropdownMenuLabel className="outline-none">My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator className="outline-none" />
-              <DropdownMenuItem className="outline-none">Profile</DropdownMenuItem>
-              <DropdownMenuItem className="outline-none">Billing</DropdownMenuItem>
-              <DropdownMenuItem className="outline-none">Team</DropdownMenuItem>
+              <DropdownMenuItem className="outline-none">
+                <UserIcon />
+                Profile
+              </DropdownMenuItem>
               <DropdownMenuItem
                 className="outline-none"
                 onClick={() => {
@@ -94,6 +99,7 @@ export default function Page() {
                   router.push("/");
                 }}
               >
+                <LogOut />
                 Logout
               </DropdownMenuItem>
             </DropdownMenuContent>
