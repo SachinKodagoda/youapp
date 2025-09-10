@@ -99,6 +99,12 @@ body {
   /* max-width: 375px; */
 }
 
+.blue-text {
+  background: linear-gradient(134.86deg, #abfffd 2.64%, #4599db 102.4%, #aadaff 102.4%);
+  background-clip: text;
+  color: transparent;
+}
+
 .gold-text {
   background: linear-gradient(
     74.08deg,

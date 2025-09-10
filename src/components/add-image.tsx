@@ -29,7 +29,7 @@ export default function AddImage({ onUpload }: TProps) {
       <UploaderProvider uploadFn={uploadFn} autoUpload>
         <SingleImageDropzone />
       </UploaderProvider>
-      <div className="text-xs font-[500]">Add image</div>
+      <div className="text-xs font-medium">Add image</div>
     </div>
   );
 }

@@ -121,7 +121,7 @@ export default function EditAbout({ onEdit, user }: TProps) {
       <div className="flex items-center justify-between text-sm">
         <div className="font-bold">About</div>
         <div
-          className="gold-text flex cursor-pointer select-none items-center gap-2 font-[500]"
+          className="gold-text flex cursor-pointer select-none items-center gap-2 font-medium"
           onClick={onSubmit}
         >
           {isLoading && <Loader size={15} />} Save & Update

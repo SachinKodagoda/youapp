@@ -30,14 +30,14 @@ export default function AboutMeasureElement({
 
   return (
     <>
-      <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
+      <label htmlFor={label} className="text-xs-plus font-medium text-white/[0.33]">
         {label}
       </label>
       <div className="flex items-center rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] text-sm">
         <input
           type="text"
           id={label}
-          className="w-[calc(100%-85px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right text-[13px] outline-none placeholder:text-white/[0.3]"
+          className="text-xs-plus w-[calc(100%-85px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right outline-none placeholder:text-white/[0.3]"
           placeholder={placeholder}
           value={value.amount || 0}
           onChange={(e) => {

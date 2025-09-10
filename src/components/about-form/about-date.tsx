@@ -15,11 +15,11 @@ export default function AboutDate({ label, onChange, placeholder = "", value }: 
   const today = new Date();
   return (
     <>
-      <div className="text-[13px] font-[500] text-white/[0.33]">{label}:</div>
+      <div className="text-xs-plus font-medium text-white/[0.33]">{label}:</div>
 
       <Popover.Root>
         <Popover.Trigger asChild>
-          <div className="w-full rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] p-3 text-right text-[13px] outline-none">
+          <div className="text-xs-plus w-full rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] p-3 text-right outline-none">
             {value ? (
               <span>{format(value, "dd MM yyyy")}</span>
             ) : (

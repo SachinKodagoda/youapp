@@ -24,7 +24,7 @@ export default function AboutGender({ label, onChange, placeholder = "", value =
 
   return (
     <>
-      <label htmlFor={label} className="text-[13px] font-[500] text-white/[0.33]">
+      <label htmlFor={label} className="text-xs-plus font-medium text-white/[0.33]">
         {label}:
       </label>
 
