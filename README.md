@@ -13,7 +13,13 @@ This project was developed as a technical interview assessment to demonstrate:
 - MongoDB database integration
 - Mobile-first responsive design
 
-## 🎨 Design Reference
+## � Live Demo
+
+**🚀 [View Live Application](https://youapp-nine.vercel.app/login)**
+
+The application is deployed on Vercel and fully functional. You can create an account or explore the features directly.
+
+## �🎨 Design Reference
 
 The application is based on the Figma design: [YouApp Test Design](https://www.figma.com/file/VnqmoYfwdTzN8qvvDZn6GC/YouApp-Test?node-id=0%3A1&=p7hNpbhefNuFtLs7-0)
 
