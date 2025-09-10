@@ -73,7 +73,8 @@ export default function AboutMeasureElement({
               control: () =>
                 "flex justify-between border border-white/[0.22] px-3 py-3 rounded-lg bg-white/5 text-white",
               dropdownIndicator: () => "text-white/60 hidden",
-              menu: () => "border border-white/[0.22] bg-[#0e191f] rounded-lg mt-1 text-right",
+              menu: () =>
+                "border border-white/[0.22] bg-[#0e191f] rounded-lg mt-1 text-right overflow-hidden",
               option: () => "px-3 py-2 hover:bg-white/5 text-white",
               placeholder: () => "text-white/[0.33] text-right",
               singleValue: () => "text-white text-right",

@@ -20,6 +20,7 @@ export interface User {
   height?: Measurements;
   weight?: Measurements;
   profileImage?: string;
+  interests?: string[];
   createdAt: Date;
   updatedAt: Date;
 }

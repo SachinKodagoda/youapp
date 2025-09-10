@@ -1,15 +1,16 @@
 "use client";
+import AboutCard from "@/components/about-card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/elements/dropdown-menu";
+import InterestCard from "@/components/interest-card";
 import { User } from "@/types/user";
 import BackImage from "@assets/images/back-icon.svg";
 import MenuIcon from "@assets/images/menu-icon.svg";
-import DetailCard from "@components/detail-card";
-import EditAbout from "@components/edit-about";
+import AboutCardEdit from "@components/about-card-edit";
 import ProfileCard from "@components/profile-card";
 import { LogOut, User as UserIcon } from "lucide-react";
 import Image from "next/image";
@@ -109,9 +110,7 @@ export default function Page() {
       <div className="flex flex-col gap-4">
         <ProfileCard user={user} horoscope={horoscope} zodiac={zodiac} loading={isLoading} />
         {isInitial ? (
-          <DetailCard
-            title="About"
-            detail="Add in your your to help others know you better"
+          <AboutCard
             onEdit={() => setIsInitial((val) => !val)}
             user={user}
             horoscope={horoscope}
@@ -119,7 +118,7 @@ export default function Page() {
             loading={isLoading}
           />
         ) : (
-          <EditAbout
+          <AboutCardEdit
             onEdit={() => {
               getUserData();
               setIsInitial((val) => !val);
@@ -128,10 +127,12 @@ export default function Page() {
           />
         )}
 
-        <DetailCard
-          title="Interest"
-          detail="Add in your interest to find a better match"
+        <InterestCard
           loading={isLoading}
+          interests={user?.interests || []}
+          onEdit={() => {
+            router.push("/interest");
+          }}
         />
       </div>
     </main>

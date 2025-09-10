@@ -6,27 +6,17 @@ import Image from "next/image";
 import Skeleton from "./elements/skeleton";
 
 type TProps = {
-  title: string;
-  detail: string;
+  horoscope?: string;
+  loading: boolean;
   onEdit?: () => void;
   user?: User | null;
-  horoscope?: string;
   zodiac?: string;
-  loading: boolean;
 };
 
-export default function DetailCard({
-  detail,
-  horoscope,
-  loading,
-  onEdit,
-  title,
-  user = null,
-  zodiac,
-}: TProps) {
+export default function AboutCard({ horoscope, loading, onEdit, user = null, zodiac }: TProps) {
   return (
     <div className="detail-card relative flex flex-col gap-4 rounded-2xl p-4 text-sm">
-      <h2 className="font-bold">{title}</h2>
+      <h2 className="font-bold">About</h2>
 
       <Image
         src={EditIcon}
@@ -78,7 +68,7 @@ export default function DetailCard({
                   )}
                 </div>
               ) : (
-                <div>{detail}</div>
+                <div>Add in your your to help others know you better</div>
               )}
             </>
           )}

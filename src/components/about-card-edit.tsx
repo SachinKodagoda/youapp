@@ -13,7 +13,7 @@ import AboutMeasureElement from "./about-form/about-measure-element";
 
 type TProps = { onEdit?: () => void; user?: User | null };
 
-export default function EditAbout({ onEdit, user }: TProps) {
+export default function AboutCardEdit({ onEdit, user }: TProps) {
   const [zodiac, setZodiac] = useState("--");
   const [horoscope, setHoroscope] = useState("--");
   const [birthday, setBirthday] = useState<Date | undefined>(
