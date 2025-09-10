@@ -19,10 +19,10 @@ export async function verifyPassword(password: string, hashedPassword: string): 
 }
 
 // Generate JWT token
-export function generateToken(user: { _id?: string; email: string; username: string }): string {
+export function generateToken(user: { id?: string; email: string; username: string }): string {
   const payload = {
     email: user.email,
-    id: user._id,
+    id: user.id,
     username: user.username,
   };
 

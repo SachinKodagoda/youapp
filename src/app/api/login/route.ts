@@ -54,7 +54,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
 
     // Generate JWT token
     const userWithoutPassword = {
-      _id: user._id?.toString(),
       birthday: user.birthday,
       createdAt: user.createdAt,
       displayName: user.displayName,
@@ -62,6 +61,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
       gender: user.gender,
       height: user.height,
       horoscope: user.horoscope,
+      id: user._id?.toString(),
       profileImage: user.profileImage,
       updatedAt: user.updatedAt,
       username: user.username,

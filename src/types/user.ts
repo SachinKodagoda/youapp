@@ -34,7 +34,7 @@ export interface LoginResponse {
   success: boolean;
   message: string;
   token?: string;
-  user?: Omit<User, "_id" | "password"> & { _id: string };
+  user?: Omit<User, "_id" | "password"> & { id: string };
 }
 
 export interface HoroscopeInfo {

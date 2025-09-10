@@ -65,7 +65,8 @@ async function updateProfileHandler(request: AuthenticatedRequest): Promise<Next
         success: true,
         user: {
           ...updatedUser,
-          _id: updatedUser?._id?.toString(),
+          _id: undefined,
+          id: updatedUser?._id?.toString(),
         },
       },
       { status: 200 },

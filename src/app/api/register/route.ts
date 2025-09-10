@@ -14,9 +14,9 @@ interface RegisterResponse {
   success: boolean;
   token?: string;
   user?: {
-    _id: string;
     createdAt: Date;
     email: string;
+    id: string;
     updatedAt: Date;
     username: string;
   };
@@ -97,9 +97,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<RegisterR
 
     // Generate token for immediate login
     const userWithoutPassword = {
-      _id: result.insertedId.toString(),
       createdAt: newUser.createdAt,
       email: newUser.email,
+      id: result.insertedId.toString(),
       updatedAt: newUser.updatedAt,
       username: newUser.username,
     };

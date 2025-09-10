@@ -19,7 +19,7 @@ export default function AboutDate({ label, onChange, placeholder = "", value }: 
 
       <Popover.Root>
         <Popover.Trigger asChild>
-          <div className="text-xs-plus w-full rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] p-3 text-right outline-none">
+          <div className="w-full rounded-lg border border-white/[0.22] bg-[#d9d9d9]/[0.06] p-3 text-right text-xs-plus outline-none">
             {value ? (
               <span>{format(value, "dd MM yyyy")}</span>
             ) : (

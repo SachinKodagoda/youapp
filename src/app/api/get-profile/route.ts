@@ -1,6 +1,7 @@
 import { AuthenticatedRequest, withAuth } from "@/lib/auth-middleware";
 import { connectToDatabase } from "@/lib/mongodb";
 import { User } from "@/types/user";
+import { transformMongoDoc } from "@/utils/mongo-transform";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
@@ -29,10 +30,7 @@ async function getProfileHandler(request: AuthenticatedRequest): Promise<NextRes
       {
         message: "Profile retrieved successfully",
         success: true,
-        user: {
-          ...user,
-          _id: user._id?.toString(),
-        },
+        user: transformMongoDoc(user),
       },
       { status: 200 },
     );
