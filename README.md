@@ -289,16 +289,44 @@ This project demonstrates modern web development practices including:
 - SEO optimization with Next.js
 - Progressive Web App capabilities
 
+## 📱 Application Screenshots
 
-
-my screens
-![register](https://github.com/user-attachments/assets/92777486-50b7-4341-9a96-bb2744ddd8a5)
-![login](https://github.com/user-attachments/assets/ab6d60f7-02cd-4638-a11d-4dcb8a58a110)
-![initial-home-screen](https://github.com/user-attachments/assets/0e965e65-4ec6-4a77-be55-0bbc9e125767)
-![register-with-data](https://github.com/user-attachments/assets/7545591c-02e6-4c29-a12b-364c4a1756fa)
-![update-about-with-data](https://github.com/user-attachments/assets/86ad295a-0459-490f-a9f6-0a4b64bc9cf3)
-![updated-home-screen](https://github.com/user-attachments/assets/686156c1-8711-463a-a89a-ff807260a4db)
-
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/ab6d60f7-02cd-4638-a11d-4dcb8a58a110" alt="Login Screen" width="280"/>
+      <br />
+      <strong>Login Screen</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/92777486-50b7-4341-9a96-bb2744ddd8a5" alt="Register Screen" width="280"/>
+      <br />
+      <strong>Register Screen</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/0e965e65-4ec6-4a77-be55-0bbc9e125767" alt="Initial Home Screen" width="280"/>
+      <br />
+      <strong>Initial Home Screen</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7545591c-02e6-4c29-a12b-364c4a1756fa" alt="Register with Data" width="280"/>
+      <br />
+      <strong>Registration with Data</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/86ad295a-0459-490f-a9f6-0a4b64bc9cf3" alt="Profile Update" width="280"/>
+      <br />
+      <strong>Profile Update Screen</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/686156c1-8711-463a-a89a-ff807260a4db" alt="Updated Home Screen" width="280"/>
+      <br />
+      <strong>Updated Home Screen</strong>
+    </td>
+  </tr>
+</table>
 
 ---
 
