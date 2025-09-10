@@ -82,7 +82,8 @@ export default function Interest() {
       .then((response) => response.json())
       .then(() => {
         setIsUpdating(false);
-        router.push("/home");
+        router.push("/");
+        toast.success("Interests updated successfully!");
       })
       .catch(() => {
         toast.error("Something went wrong. Please try again later.");
@@ -95,7 +96,7 @@ export default function Interest() {
         <div
           className="flex w-14 cursor-pointer gap-2 text-sm font-bold"
           onClick={() => {
-            router.push("/home");
+            router.push("/");
           }}
         >
           <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />

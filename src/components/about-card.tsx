@@ -14,6 +14,7 @@ type TProps = {
 };
 
 export default function AboutCard({ horoscope, loading, onEdit, user = null, zodiac }: TProps) {
+  const isInitialUser = !user?.birthday && !user?.height && !user?.weight;
   return (
     <div className="detail-card relative flex flex-col gap-4 rounded-2xl p-4 text-sm">
       <h2 className="font-bold">About</h2>
@@ -32,9 +33,11 @@ export default function AboutCard({ horoscope, loading, onEdit, user = null, zod
             <Skeleton />
           ) : (
             <>
-              {user ? (
+              {isInitialUser ? (
+                <div className="text-white/50">Add in your your to help others know you better</div>
+              ) : (
                 <div className="flex flex-col gap-4">
-                  {user.birthday && (
+                  {user?.birthday && (
                     <div>
                       Birthday:{" "}
                       <span className="text-white">
@@ -50,7 +53,7 @@ export default function AboutCard({ horoscope, loading, onEdit, user = null, zod
                     Zodiac: <span className="text-white">{zodiac}</span>
                   </div>
 
-                  {user.height && (
+                  {user?.height && (
                     <div>
                       Height:{" "}
                       <span className="text-white">
@@ -58,7 +61,7 @@ export default function AboutCard({ horoscope, loading, onEdit, user = null, zod
                       </span>
                     </div>
                   )}
-                  {user.weight && (
+                  {user?.weight && (
                     <div>
                       Weight:{" "}
                       <span className="text-white">
@@ -67,8 +70,6 @@ export default function AboutCard({ horoscope, loading, onEdit, user = null, zod
                     </div>
                   )}
                 </div>
-              ) : (
-                <div>Add in your your to help others know you better</div>
               )}
             </>
           )}

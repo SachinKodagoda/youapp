@@ -1,93 +1,140 @@
 "use client";
-
-import Loader from "@/components/elements/loader";
-import EyeClosed from "@assets/images/eye-closed.svg";
-import EyeOpened from "@assets/images/eye-opened.svg";
-import PasswordInput from "@components/password-input";
-import clsx from "clsx";
+import AboutCard from "@/components/about-card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/elements/dropdown-menu";
+import InterestCard from "@/components/interest-card";
+import { User } from "@/types/user";
+import BackImage from "@assets/images/back-icon.svg";
+import MenuIcon from "@assets/images/menu-icon.svg";
+import AboutCardEdit from "@components/about-card-edit";
+import ProfileCard from "@components/profile-card";
+import { LogOut, User as UserIcon } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function Home() {
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const isValid = password.length > 0 && username.length > 0;
-  const [isLoading, setIsLoading] = useState(false);
+export default function Page() {
+  const [isInitial, setIsInitial] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [horoscope, setHoroscope] = useState("--");
+  const [zodiac, setZodiac] = useState("--");
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const onSubmit = async () => {
-    if (!isValid) return;
-
+  const getUserData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("/api/login", {
-        body: JSON.stringify({ password, username }),
+      const userId = JSON.parse(localStorage.getItem("user") || "{}").id;
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/get-profile?userId=${userId}`, {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        method: "POST",
+        method: "GET",
       });
 
       const data = await response.json();
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      if (data.success) {
-        setIsLoading(false);
-        router.push("/home");
-      } else {
-        setIsLoading(false);
-        toast.error("Username or password is incorrect.");
-      }
+      setUser(data.user);
+      setZodiac(data.user?.zodiac || "--");
+      setHoroscope(data.user?.horoscope || "--");
     } catch {
-      setIsLoading(false);
       toast.error("Something went wrong. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      getUserData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <main className="container flex min-h-dvh flex-col justify-between gap-4 p-4">
-      <section className="flex w-full flex-auto items-center">
-        <div className="flex w-full flex-col gap-[25px] p-6">
-          <header className="flex pl-5 text-2xl font-bold">Login</header>
-          <form className="flex w-full flex-col gap-[15px]" autoComplete="off">
-            <input
-              type="text"
-              className="select-wrapper h-[51px] rounded-lg bg-white/10 px-5 text-sm outline-none placeholder:text-white/40"
-              name="username"
-              autoComplete="off"
-              placeholder="Enter Username/Email"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-            <PasswordInput
-              src={showPassword ? EyeOpened : EyeClosed}
-              name="password"
-              placeholder="Enter Password"
-              onClick={() => setShowPassword((show) => !show)}
-              onChange={(value) => setPassword(value)}
-              value={password}
-              showPassword={showPassword}
-            />
-          </form>
-          <button
-            className={clsx(
-              !isValid && "login-inactive",
-              "login-button flex w-full items-center justify-center gap-2 rounded-lg",
-            )}
-            onClick={onSubmit}
-          >
-            {isLoading && <Loader size={15} />}
-            Login
-          </button>
-          <div className="mt-5 flex justify-center text-xs font-medium">
-            <div className="flex gap-1">
-              No account? <div className="text-golden-gradient cursor-pointer">Register here</div>
+    <main className="container-black flex min-h-dvh flex-col gap-8 p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex w-14 cursor-pointer gap-2 text-sm font-bold">
+          {!isInitial && (
+            <div
+              onClick={() => setIsInitial((val) => !val)}
+              className="flex cursor-pointer select-none items-center gap-2"
+            >
+              <Image src={BackImage} width={7} height={14} alt="back icon" className="w-auto" />
+              Back
             </div>
-          </div>
+          )}
         </div>
-      </section>
+
+        <div className="flex flex-auto justify-center">{user?.username}</div>
+        <div className="flex w-11 justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="outline-none">
+              <Image
+                src={MenuIcon}
+                width={22}
+                height={7}
+                alt="menu icon"
+                className="h-full w-auto outline-none"
+              />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="mr-4 border-0 bg-[#162329] text-white">
+              <DropdownMenuItem className="outline-none">
+                <UserIcon />
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="outline-none"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                  router.push("/login");
+                }}
+              >
+                <LogOut />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <ProfileCard user={user} horoscope={horoscope} zodiac={zodiac} loading={isLoading} />
+        {isInitial ? (
+          <AboutCard
+            onEdit={() => setIsInitial((val) => !val)}
+            user={user}
+            horoscope={horoscope}
+            zodiac={zodiac}
+            loading={isLoading}
+          />
+        ) : (
+          <AboutCardEdit
+            onEdit={() => {
+              getUserData();
+              setIsInitial((val) => !val);
+            }}
+            user={user}
+          />
+        )}
+
+        <InterestCard
+          loading={isLoading}
+          interests={user?.interests || []}
+          onEdit={() => {
+            router.push("/interest");
+          }}
+        />
+      </div>
     </main>
   );
 }
