@@ -45,8 +45,6 @@ export const useUserProfile = () => {
   }, []);
 
   useEffect(() => {
-    /* eslint-disable-next-line no-console */
-    console.log("tttttttttt=-->");
     fetchUserData();
   }, [fetchUserData]);
 

@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Select from "react-select";
 
 type TProps = {
@@ -23,6 +23,16 @@ export default function AboutMeasureElement({
     unit: "",
   },
 }: TProps) {
+  const [inputValue, setInputValue] = useState<string>("");
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Update local input value when external value changes (but not during focus)
+  useEffect(() => {
+    if (!isFocused) {
+      setInputValue(value.amount === 0 ? "" : value.amount.toString());
+    }
+  }, [value.amount, isFocused]);
+
   const selectedOption = useMemo(() => {
     return value.unit ? options.find((option) => option.value === value.unit) || null : null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,17 +47,51 @@ export default function AboutMeasureElement({
         <input
           type="text"
           id={label}
-          className="text-xs-plus w-[calc(100%-85px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right outline-none placeholder:text-white/[0.3]"
+          className="w-[calc(100%-85px)] flex-auto bg-transparent py-3 pl-3 pr-3 text-right text-xs-plus outline-none placeholder:text-white/[0.3]"
           placeholder={placeholder}
-          value={value.amount || 0}
+          value={inputValue}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           onChange={(e) => {
+            const newInputValue = e.target.value;
+            setInputValue(newInputValue);
+
             if (onChange) {
-              const inputValue = e.target.value;
-              const numericValue = inputValue === "" ? 0 : parseFloat(inputValue) || 0;
-              onChange({
-                amount: numericValue,
-                unit: value.unit || "",
-              });
+              // Allow empty string
+              if (newInputValue === "") {
+                onChange({
+                  amount: 0,
+                  unit: value.unit || "",
+                });
+                return;
+              }
+
+              // Regex to allow valid decimal number input during typing
+              // Allows: 0, 0., 0.5, 1, 1., 1.5, 12.34, . etc.
+              // Disallows: 01, 02.5, abc, 1.2.3 etc.
+              const validNumberPattern = /^(0(\.\d*)?|[1-9]\d*(\.\d*)?|\.)$/;
+
+              if (validNumberPattern.test(newInputValue)) {
+                // For standalone decimal point, set amount to 0
+                let numericValue: number;
+
+                if (newInputValue === ".") {
+                  numericValue = 0;
+                } else if (newInputValue.endsWith(".")) {
+                  // For values like "4.", store as number but preserve decimal point in display
+                  numericValue = parseFloat(newInputValue);
+                } else {
+                  numericValue = parseFloat(newInputValue) || 0;
+                }
+
+                onChange({
+                  amount: numericValue,
+                  unit: value.unit || "",
+                });
+              } else {
+                // If invalid pattern, revert to previous valid value
+                setInputValue(value.amount === 0 ? "" : value.amount.toString());
+              }
             }
           }}
         />

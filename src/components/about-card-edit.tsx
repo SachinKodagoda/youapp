@@ -151,8 +151,18 @@ export default function AboutCardEdit({ onEdit, user }: TProps) {
           value={birthday}
           onChange={handleDayPickerSelect}
         />
-        <AboutFormElement label="Horoscope" placeholder={horoscope} loader={horoscopeLoader} />
-        <AboutFormElement label="Zodiac" placeholder={zodiac} loader={horoscopeLoader} />
+        <AboutFormElement
+          label="Horoscope"
+          placeholder={horoscope}
+          loader={horoscopeLoader}
+          disabled={true}
+        />
+        <AboutFormElement
+          label="Zodiac"
+          placeholder={zodiac}
+          loader={horoscopeLoader}
+          disabled={true}
+        />
         <AboutMeasureElement
           label="Height"
           placeholder="Add height"
