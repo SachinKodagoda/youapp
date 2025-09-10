@@ -1,5 +1,5 @@
 import { RegisterFormData } from "@/types/schema";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { UseFormClearErrors, UseFormSetError } from "react-hook-form";
 import { useDebounce } from "./use-debounce";
 
@@ -7,9 +7,21 @@ export function useAvailabilityCheck(
   clearErrors: UseFormClearErrors<RegisterFormData>,
   setError: UseFormSetError<RegisterFormData>,
 ) {
+  const [loadingStates, setLoadingStates] = useState<{
+    email: boolean;
+    username: boolean;
+  }>({
+    email: false,
+    username: false,
+  });
   const checkAvailability = useCallback(
     async (field: "email" | "username", value: string) => {
-      if (!value || value.length < 3) return;
+      if (!value || value.length < 3) {
+        setLoadingStates((prev) => ({ ...prev, [field]: false }));
+        return;
+      }
+
+      setLoadingStates((prev) => ({ ...prev, [field]: true }));
 
       try {
         const response = await fetch("/api/check-availability", {
@@ -30,6 +42,8 @@ export function useAvailabilityCheck(
       } catch (error) {
         /* eslint-disable-next-line no-console */
         console.error("Availability check error:", error);
+      } finally {
+        setLoadingStates((prev) => ({ ...prev, [field]: false }));
       }
     },
     [clearErrors, setError],
@@ -37,5 +51,9 @@ export function useAvailabilityCheck(
 
   const debouncedCheckAvailability = useDebounce(checkAvailability, 500);
 
-  return { checkAvailability, debouncedCheckAvailability };
+  return {
+    checkAvailability,
+    debouncedCheckAvailability,
+    loadingStates,
+  };
 }

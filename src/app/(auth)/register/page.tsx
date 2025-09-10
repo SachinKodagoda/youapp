@@ -27,7 +27,7 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
   });
 
-  const { debouncedCheckAvailability } = useAvailabilityCheck(clearErrors, setError);
+  const { debouncedCheckAvailability, loadingStates } = useAvailabilityCheck(clearErrors, setError);
 
   const onSubmit = async (data: RegisterFormData) => {
     await registerUser(data);
@@ -48,6 +48,7 @@ export default function Register() {
               placeholder="Enter Email"
               autoComplete="off"
               error={errors.email}
+              isLoading={loadingStates.email}
               {...register("email")}
               onChange={(e) => {
                 register("email").onChange(e);
@@ -60,6 +61,7 @@ export default function Register() {
               placeholder="Create Username"
               autoComplete="off"
               error={errors.username}
+              isLoading={loadingStates.username}
               {...register("username")}
               onChange={(e) => {
                 register("username").onChange(e);
