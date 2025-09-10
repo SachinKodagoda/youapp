@@ -289,6 +289,17 @@ This project demonstrates modern web development practices including:
 - SEO optimization with Next.js
 - Progressive Web App capabilities
 
+
+
+my screens
+![register](https://github.com/user-attachments/assets/92777486-50b7-4341-9a96-bb2744ddd8a5)
+![login](https://github.com/user-attachments/assets/ab6d60f7-02cd-4638-a11d-4dcb8a58a110)
+![initial-home-screen](https://github.com/user-attachments/assets/0e965e65-4ec6-4a77-be55-0bbc9e125767)
+![register-with-data](https://github.com/user-attachments/assets/7545591c-02e6-4c29-a12b-364c4a1756fa)
+![update-about-with-data](https://github.com/user-attachments/assets/86ad295a-0459-490f-a9f6-0a4b64bc9cf3)
+![updated-home-screen](https://github.com/user-attachments/assets/686156c1-8711-463a-a89a-ff807260a4db)
+
+
 ---
 
 **Created for**: YouApp Technical Interview Assessment
