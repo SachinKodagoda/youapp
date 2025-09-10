@@ -39,9 +39,8 @@ export function useAvailabilityCheck(
         } else if (data.success && data.available) {
           clearErrors(field);
         }
-      } catch (error) {
-        /* eslint-disable-next-line no-console */
-        console.error("Availability check error:", error);
+      } catch {
+        // handle errors if needed
       } finally {
         setLoadingStates((prev) => ({ ...prev, [field]: false }));
       }

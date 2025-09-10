@@ -24,9 +24,7 @@ export function useLogin() {
       } else {
         toast.error("Username or password is incorrect.");
       }
-    } catch (error) {
-      /* eslint-disable-next-line no-console */
-      console.error("Login error:", error);
+    } catch {
       toast.error("Something went wrong. Please try again later.");
     }
   };

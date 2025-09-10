@@ -49,9 +49,7 @@ export function useRegistration() {
       } else {
         toast.error(result.message || "Registration failed. Please try again.");
       }
-    } catch (error) {
-      /* eslint-disable-next-line no-console */
-      console.error("Registration error:", error);
+    } catch {
       toast.error("Something went wrong. Please try again later.");
     }
   };

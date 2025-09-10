@@ -259,8 +259,7 @@ export function UploaderProvider<TOptions = unknown>({
               });
             } else {
               if (process.env.NODE_ENV === "development") {
-                // eslint-disable-next-line no-console
-                console.error(err);
+                // handle errors if needed
               }
               const errorMessage = err instanceof Error ? err.message : "Upload failed";
               updateFileState(fileState.key, {

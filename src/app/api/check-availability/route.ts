@@ -70,9 +70,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<CheckAvai
       },
       { status: 200 },
     );
-  } catch (error) {
-    /* eslint-disable-next-line no-console */
-    console.error("Check availability error:", error);
+  } catch {
     return NextResponse.json(
       {
         available: false,
