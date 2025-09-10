@@ -2,10 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
+  /* Color Variables */
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  /* Theme Colors */
+  --color-primary-dark: #09141a;
+  --color-secondary-dark: #0d1d23;
+  --color-tertiary-dark: #1f4247;
+
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* Gradients */
+  --gradient-main: radial-gradient(
+    121.73% 121.49% at 100% -3.39%,
+    var(--color-tertiary-dark) 0%,
+    var(--color-secondary-dark) 56.18%,
+    var(--color-primary-dark) 100%
+  );
+
+  --gradient-button: linear-gradient(108.32deg, #62cdcb 24.88%, #4599db 78.49%);
+  --gradient-button-glow: linear-gradient(
+    108.32deg,
+    rgba(98, 205, 203, 0.5) 24.88%,
+    rgba(69, 153, 219, 0.5) 78.49%
+  );
+
+  --gradient-golden: linear-gradient(
+    74.08deg,
+    #94783e -6.8%,
+    #f3eda6 16.76%,
+    #f8fae5 30.5%,
+    #ffe2be 49.6%,
+    #d5be88 78.56%,
+    #f8fae5 89.01%,
+    #d5be88 100.43%
+  );
+
+  --gradient-blue: linear-gradient(134.86deg, #abfffd 2.64%, #4599db 102.4%, #aadaff 102.4%);
+
+  /* Layout */
+  --container-max-width: 600px;
+  --button-height: 48px;
+
+  /* Effects */
+  --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  --blur-effect: blur(20px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,66 +62,60 @@
   }
 }
 
+/* ===== BASE STYLES ===== */
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-  background: #000;
+  background: var(--color-black);
 }
 
+/* ===== LAYOUT COMPONENTS ===== */
 .container {
-  color: #fff;
-  background: radial-gradient(
-    121.73% 121.49% at 100% -3.39%,
-    #1f4247 0%,
-    #0d1d23 56.18%,
-    #09141a 100%
-  );
+  color: var(--color-white);
+  background: var(--gradient-main);
   margin: auto;
-  max-width: 600px;
-  /* max-width: 375px; */
+  max-width: var(--container-max-width);
   width: 100vw;
 }
 
+.container-black {
+  color: var(--color-white);
+  margin: auto;
+  background: var(--color-primary-dark);
+  max-width: var(--container-max-width);
+  width: 100vw;
+}
+
+/* ===== BUTTON COMPONENTS ===== */
 .login-button {
-  background: linear-gradient(108.32deg, #62cdcb 24.88%, #4599db 78.49%);
+  background: var(--gradient-button);
   position: relative;
   isolation: isolate;
   font-weight: 700;
-  height: 48px;
+  height: var(--button-height);
+
   &::after {
     width: 100%;
     height: 100%;
     content: "";
     position: absolute;
-    background: linear-gradient(
-      108.32deg,
-      rgba(98, 205, 203, 0.5) 24.88%,
-      rgba(69, 153, 219, 0.5) 78.49%
-    );
-    filter: blur(20px);
-
+    background: var(--gradient-button-glow);
+    filter: var(--blur-effect);
     top: 25%;
     left: 0;
     z-index: -1;
   }
+
+  &.login-inactive {
+    opacity: 0.3;
+
+    &::after {
+      display: none;
+    }
+  }
 }
 
+/* ===== TEXT UTILITIES ===== */
 .text-golden-gradient {
-  background: linear-gradient(
-    74.08deg,
-    #94783e -6.8%,
-    #f3eda6 16.76%,
-    #f8fae5 30.5%,
-    #ffe2be 49.6%,
-    #d5be88 78.56%,
-    #f8fae5 89.01%,
-    #d5be88 100.43%
-  );
+  background: var(--gradient-golden);
   background-clip: text;
   color: transparent;
   text-decoration: underline;
@@ -83,56 +123,24 @@ body {
   text-underline-offset: 3px;
 }
 
-.login-inactive {
-  opacity: 0.3;
-  &::after {
-    display: none;
-  }
-}
-
-.container-black {
-  color: #fff;
-  margin: auto;
-  background: #09141a;
-  max-width: 600px;
-  width: 100vw;
-  /* max-width: 375px; */
-}
-
 .blue-text {
-  background: linear-gradient(134.86deg, #abfffd 2.64%, #4599db 102.4%, #aadaff 102.4%);
+  background: var(--gradient-blue);
   background-clip: text;
   color: transparent;
 }
 
 .gold-text {
-  background: linear-gradient(
-    74.08deg,
-    #94783e -6.8%,
-    #f3eda6 16.76%,
-    #f8fae5 30.5%,
-    #ffe2be 49.6%,
-    #d5be88 78.56%,
-    #f8fae5 89.01%,
-    #d5be88 100.43%
-  );
+  background: var(--gradient-golden);
   background-clip: text;
   color: transparent;
 }
 
-.profile-card {
-  background: #162329;
+.shadow-text {
+  text-shadow: var(--text-shadow);
 }
 
-.detail-card {
-  background: #0e191f;
-}
-
+/* ===== THIRD-PARTY OVERRIDES ===== */
 .rdp-root {
   --rdp-accent-color: white;
   --rdp-background-color: white;
-}
-
-.shadow-text {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

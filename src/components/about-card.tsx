@@ -16,7 +16,7 @@ type TProps = {
 export default function AboutCard({ horoscope, loading, onEdit, user = null, zodiac }: TProps) {
   const isInitialUser = !user?.birthday && !user?.height && !user?.weight;
   return (
-    <div className="detail-card relative flex flex-col gap-4 rounded-2xl p-4 text-sm">
+    <div className="relative flex flex-col gap-4 rounded-2xl bg-[#0e191f] p-4 text-sm">
       <h2 className="font-bold">About</h2>
 
       <Image

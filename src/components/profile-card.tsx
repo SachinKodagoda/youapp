@@ -14,7 +14,7 @@ type TProps = {
 
 export default function ProfileCard({ horoscope, loading, user, zodiac }: TProps) {
   return (
-    <div className="profile-card relative min-h-[190px] rounded-2xl p-4">
+    <div className="relative min-h-[190px] rounded-2xl bg-[#162329] p-4">
       {user?.profileImage && (
         <>
           <Image

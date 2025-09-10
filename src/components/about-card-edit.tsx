@@ -117,7 +117,7 @@ export default function AboutCardEdit({ onEdit, user }: TProps) {
   };
 
   return (
-    <div className="detail-card relative flex flex-col gap-7 rounded-2xl p-4 text-sm">
+    <div className="relative flex flex-col gap-7 rounded-2xl bg-[#0e191f] p-4 text-sm">
       <div className="flex items-center justify-between text-sm">
         <div className="font-bold">About</div>
         <div
